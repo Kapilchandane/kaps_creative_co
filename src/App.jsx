@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import ScrollManager from "./components/ScrollManager";
 import SmoothScroll from "./components/SmoothScroll";
 import WhatsAppButton from "./components/WhatsAppButton";
+import CallButton from "./components/CallButton";
 import BackToTop from "./components/BackToTop";
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
       </main>
 
       <Footer />
+      <CallButton />
       <WhatsAppButton />
       <BackToTop />
     </>

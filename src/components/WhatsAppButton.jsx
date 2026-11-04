@@ -1,7 +1,7 @@
 import { MessageCircle } from "lucide-react";
 
 export default function WhatsAppButton() {
-  const phone = import.meta.env.VITE_WHATSAPP_NUMBER;
+  const phone = "919673681767";
   const isValid = /^[1-9]\d{7,14}$/.test(phone || "");
 
   if (!isValid) return null;

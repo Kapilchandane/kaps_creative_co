@@ -59,7 +59,7 @@ export default function Contact() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    const phone = import.meta.env.VITE_WHATSAPP_NUMBER;
+    const phone = "919673681767";
 
     if (!phone || !/^[1-9]\d{7,14}$/.test(phone)) {
       setStatus("error");
