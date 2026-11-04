@@ -30,6 +30,7 @@ export default function ProjectImage({
       src={asset(src)}
       alt={alt}
       loading="lazy"
+      decoding="async"
       onClick={onClick}
       onError={() => setFailed(true)}
       className={className}

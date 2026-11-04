@@ -14,7 +14,7 @@ export default function SEO({
       "https://kapilchandane.github.io";
     const base = import.meta.env.BASE_URL || "/";
     const siteUrl = `${origin}${base}`.replace(/\/+$/, "");
-    const defaultImage = `${siteUrl}/images/projects/social-media-campaign/mockup-poster.png`;
+    const defaultImage = `${siteUrl}/images/projects/social-media-campaign/mockup-poster.webp`;
 
     const fullTitle = title
       ? `${title} | ${siteName}`

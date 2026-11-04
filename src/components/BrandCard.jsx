@@ -21,6 +21,7 @@ export default function BrandCard({ brand }) {
             src={asset(brand.logo)}
             alt={`${brand.name} logo`}
             loading="lazy"
+            decoding="async"
             onError={() => setImageError(true)}
             className="max-h-full max-w-full object-contain"
           />

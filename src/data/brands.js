@@ -19,7 +19,7 @@ export const brands = [
     id: 2,
     name: "Lavanymrut",
     slug: "lavanymrut",
-    logo: "/images/brands/lavanymrut.png",
+    logo: "/images/brands/lavanymrut.webp",
     services: [
       "Label Design",
       "Video Production",
@@ -32,7 +32,7 @@ export const brands = [
     id: 3,
     name: "Amrut Kalash",
     slug: "amrut-kalash",
-    logo: "/images/brands/amrut-kalash.png",
+    logo: "/images/brands/amrut-kalash.webp",
     services: [
       "Logo Design",
       "Label Design",
@@ -46,7 +46,7 @@ export const brands = [
     id: 4,
     name: "Leaf and Petals",
     slug: "leaf-and-petals",
-    logo: "/images/brands/leaf-and-petals.png",
+    logo: "/images/brands/leaf-and-petals.webp",
     services: [
       "Label Design",
     ],
