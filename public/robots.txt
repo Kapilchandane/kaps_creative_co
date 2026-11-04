@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kapilchandane.github.io/Kaps/sitemap.xml
+Sitemap: https://kapilchandane.github.io/kaps_creative_co/sitemap.xml

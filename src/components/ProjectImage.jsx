@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ImageIcon } from "lucide-react";
+import { asset } from "../utils/asset";
 
 export default function ProjectImage({
   src,
@@ -26,7 +27,7 @@ export default function ProjectImage({
 
   return (
     <img
-      src={src}
+      src={asset(src)}
       alt={alt}
       loading="lazy"
       onClick={onClick}

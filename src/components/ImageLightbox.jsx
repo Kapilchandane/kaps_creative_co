@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { asset } from "../utils/asset";
 
 export default function ImageLightbox({
   images,
@@ -70,7 +71,7 @@ export default function ImageLightbox({
       </button>
 
       <img
-        src={images[currentIndex]}
+        src={asset(images[currentIndex])}
         alt={`${title} - Image ${currentIndex + 1}`}
         className="max-h-[80vh] max-w-[85vw] object-contain"
         onClick={(event) => event.stopPropagation()}

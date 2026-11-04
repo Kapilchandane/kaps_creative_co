@@ -9,9 +9,11 @@ export default function SEO({
 }) {
   useEffect(() => {
     const siteName = "Kaps Creative Co.";
-    const siteUrl =
+    const origin =
       (typeof window !== "undefined" && window.location.origin) ||
       "https://kapilchandane.github.io";
+    const base = import.meta.env.BASE_URL || "/";
+    const siteUrl = `${origin}${base}`.replace(/\/+$/, "");
     const defaultImage = `${siteUrl}/images/projects/social-media-campaign/mockup-poster.png`;
 
     const fullTitle = title
@@ -23,9 +25,9 @@ export default function SEO({
 
     const finalDescription = description || defaultDescription;
     const finalImage = image
-      ? new URL(image, siteUrl).href
+      ? new URL(image, `${origin}${base}`).href
       : defaultImage;
-    const canonical = `${siteUrl}${window.location.pathname}`;
+    const canonical = `${origin}${window.location.pathname}`;
 
     document.title = fullTitle;
 

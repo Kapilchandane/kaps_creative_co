@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "motion/react";
+import { asset } from "../utils/asset";
 
 export default function BrandCard({ brand }) {
   const [imageError, setImageError] = useState(false);
@@ -17,7 +18,7 @@ export default function BrandCard({ brand }) {
       <div className="mb-7 flex h-36 items-center justify-center rounded-2xl bg-slate-100 dark:bg-white/5 p-6">
         {brand.logo && !imageError ? (
           <img
-            src={brand.logo}
+            src={asset(brand.logo)}
             alt={`${brand.name} logo`}
             loading="lazy"
             onError={() => setImageError(true)}
