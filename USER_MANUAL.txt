@@ -1,0 +1,394 @@
+KAPS CREATIVE CO. - WEBSITE USER MANUAL
+=======================================
+
+This manual explains how to manage content on the Kaps Creative Co. website.
+The website is built with React + Vite. Most content is stored in simple data files,
+so you usually do not need to edit the page components.
+
+------------------------------------------------------------
+1. PROJECT FOLDER STRUCTURE
+------------------------------------------------------------
+
+src/
+  data/
+    services.js      = Services shown on the homepage
+    brands.js        = Brand cards shown in the Brands section
+    projects.js      = Portfolio projects and case studies
+  pages/
+    Home.jsx         = Homepage layout and featured work
+    Portfolio.jsx    = Full portfolio gallery
+    ProjectDetails.jsx = Individual project case study page
+  sections/
+    Brands.jsx       = Brands section layout
+    Contact.jsx      = Contact form section
+  components/
+    Navbar.jsx       = Top navigation
+    Footer.jsx       = Footer
+    ProjectCard.jsx  = Portfolio card design
+    ProjectImage.jsx = Image with missing-image fallback
+    ImageLightbox.jsx= Full-screen image viewer
+  public/
+    images/
+      brands/        = Brand logos
+      projects/      = Project images
+    favicon.svg      = Browser tab icon
+
+Root files:
+  .env.local         = Formspree endpoint and WhatsApp number
+  index.html         = Base HTML and favicon link
+  src/index.css      = Global styles
+
+------------------------------------------------------------
+2. HOW TO RUN THE WEBSITE
+------------------------------------------------------------
+
+Development mode:
+  npm run dev
+
+Production build:
+  npm run build
+
+Preview production build:
+  npm run preview
+
+If the dev server says a port is busy, Vite will automatically use the next port.
+Always restart the dev server after changing .env.local.
+
+------------------------------------------------------------
+3. HOW TO ADD A NEW SERVICE
+------------------------------------------------------------
+
+File to edit:
+  src/data/services.js
+
+Each service has 3 fields:
+  - icon: a Lucide React icon
+  - title: service name
+  - desc: short description
+
+Step A: Import an icon at the top of the file.
+Example:
+  import { Search } from "lucide-react";
+
+Step B: Add a new object inside the services array.
+Example:
+  {
+    icon: Search,
+    title: "SEO Optimization",
+    desc: "Improve search visibility and website performance.",
+  },
+
+The Services section on the homepage reads this array automatically.
+You do not need to edit the Services component.
+
+------------------------------------------------------------
+4. HOW TO ADD A NEW BRAND
+------------------------------------------------------------
+
+Files to edit:
+  src/data/brands.js
+  public/images/brands/
+
+Step A: Add the brand logo image.
+  Put the logo here:
+  public/images/brands/brand-name.webp
+
+  Recommended:
+  - SVG if possible, or WebP
+  - Under 100 KB
+  - Around 500 px wide
+
+Step B: Add a brand object in src/data/brands.js.
+Example:
+  {
+    id: 4,
+    name: "Your Brand Name",
+    slug: "your-brand-name",
+    logo: "/images/brands/your-brand-name.webp",
+    services: [
+      "Website Development",
+      "Social Media Design",
+    ],
+    description:
+      "Short description of the collaboration.",
+    projectSlug: null,
+  },
+
+Important fields:
+  - id: unique number
+  - name: brand display name
+  - slug: lowercase URL-friendly name
+  - logo: image path from the public folder
+  - services: list of services provided
+  - description: short summary
+  - projectSlug: if the brand has a portfolio project, use the project slug;
+    otherwise use null
+
+If projectSlug is not null, the brand card will show a "View Project" link.
+Example:
+  projectSlug: "social-media-campaign"
+
+If the logo file is missing, the brand card automatically shows the brand name as text.
+
+------------------------------------------------------------
+5. HOW TO ADD A NEW PROJECT
+------------------------------------------------------------
+
+Files to edit:
+  src/data/projects.js
+  public/images/projects/
+
+Step A: Create a folder for the project.
+Example:
+  public/images/projects/my-new-project/
+
+Step B: Add project images.
+Recommended files:
+  cover.webp
+  image-1.webp
+  image-2.webp
+
+Step C: Add a project object in src/data/projects.js.
+Example:
+  {
+    id: 4,
+    slug: "my-new-project",
+    title: "My New Project",
+    category: "Branding",
+    client: "Client Name",
+    year: "2026",
+    featured: true,
+    description:
+      "Short description for the card.",
+    overview:
+      "Longer description for the case study page.",
+    services: [
+      "Brand Identity",
+      "Packaging Design",
+    ],
+    thumbnail:
+      "/images/projects/my-new-project/cover.webp",
+    images: [
+      "/images/projects/my-new-project/image-1.webp",
+      "/images/projects/my-new-project/image-2.webp",
+    ],
+  },
+
+Important fields:
+  - id: unique number
+  - slug: lowercase URL-friendly name; this becomes the page URL:
+    /portfolio/my-new-project
+  - title: project title
+  - category: must match one of the categories if you want filtering to work
+  - client: client or brand name
+  - year: project year
+  - featured: true shows it on the homepage; false hides it from homepage
+  - description: short card text
+  - overview: longer case study text
+  - services: list of services used
+  - thumbnail: cover image
+  - images: gallery images for the lightbox
+
+Step D: Add the category if needed.
+  Edit the categories array at the bottom of src/data/projects.js.
+Example:
+  export const categories = [
+    "All",
+    "Packaging",
+    "Branding",
+    "Social Media",
+    "Websites",
+    "Digital Marketing",
+    "Automation",
+  ];
+
+The portfolio page and homepage featured work update automatically.
+
+------------------------------------------------------------
+6. HOW TO CHANGE HOMEPAGE FEATURED PROJECTS
+------------------------------------------------------------
+
+File to edit:
+  src/pages/Home.jsx
+
+The homepage shows projects where:
+  featured: true
+
+It shows up to 3 featured projects.
+
+To feature a project:
+  Set featured: true in src/data/projects.js.
+
+To hide a project from the homepage:
+  Set featured: false.
+
+You can also edit the Work() function in Home.jsx if you want to change the
+number of featured projects or the section text.
+
+------------------------------------------------------------
+7. HOW TO UPDATE CONTACT FORM SETTINGS
+------------------------------------------------------------
+
+File to edit:
+  .env.local
+
+Set:
+  VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/YOUR_FORM_ID
+  VITE_WHATSAPP_NUMBER=91XXXXXXXXXX
+
+Rules:
+  - Use your real Formspree form endpoint.
+  - WhatsApp number must include country code.
+  - Do not use + or spaces.
+  - Example India number: 919876543210
+
+After editing .env.local:
+  Restart npm run dev.
+
+Formspree setup:
+  1. Create a Formspree account.
+  2. Create a form named Kaps Creative Co. - Project Inquiries.
+  3. Copy the endpoint into .env.local.
+
+------------------------------------------------------------
+8. HOW TO UPDATE NAVIGATION LINKS
+------------------------------------------------------------
+
+File to edit:
+  src/components/Navbar.jsx
+
+The links array controls the navbar:
+  const links = [
+    { name: "Home", to: "/" },
+    { name: "About", to: "/#about" },
+    { name: "Services", to: "/#services" },
+    { name: "Portfolio", to: "/portfolio" },
+    { name: "Brands", to: "/#brands" },
+    { name: "Contact", to: "/#contact" },
+  ];
+
+To add a new link:
+  Add a new object to this array.
+
+To change a label:
+  Change the name value.
+
+------------------------------------------------------------
+9. HOW TO UPDATE BRAND AND PROJECT PLACEHOLDERS
+------------------------------------------------------------
+
+Places to review before publishing:
+
+1. src/data/projects.js
+   - Change "Brand name to be added" to real client names.
+   - Update descriptions and overviews.
+   - Replace dummy years if needed.
+
+2. src/data/brands.js
+   - Add real brand names only with permission.
+   - Add real logos.
+   - Update services and descriptions.
+
+3. src/sections/Contact.jsx
+   - Update location text if needed.
+   - Update contact copy if needed.
+
+4. src/components/Footer.jsx
+   - Update brand name and copyright text.
+
+5. index.html
+   - The title is currently "kaps"; the SEO component updates it in the app.
+
+------------------------------------------------------------
+10. HOW TO UPDATE IMAGES
+------------------------------------------------------------
+
+Image folders:
+  public/images/brands/
+  public/images/projects/
+
+Recommended sizes:
+  Project cover: 1400 x 1050 px, under 300 KB
+  Case study image: 1600 px wide, under 500 KB
+  Brand logo: SVG or 500 px wide, under 100 KB
+  Social media thumbnail: 1000 x 1000 px, under 250 KB
+
+Use WebP for photos and mockups.
+Use SVG for logos when possible.
+
+If an image is missing, the website shows a placeholder instead of a broken image.
+
+------------------------------------------------------------
+11. HOW TO CHANGE COLORS OR THEME
+------------------------------------------------------------
+
+Main color is violet.
+
+Common places to change colors:
+  - src/index.css: base background and selection color
+  - Tailwind classes in components, such as:
+      bg-violet-500
+      text-violet-400
+      border-violet-400
+
+If you want a different brand color, search for "violet" in src and replace
+carefully with another Tailwind color.
+
+------------------------------------------------------------
+12. TROUBLESHOOTING
+------------------------------------------------------------
+
+Problem: "Failed to resolve import"
+Solution:
+  - Check the file path in the import statement.
+  - Make sure the file exists.
+  - File names are case-sensitive.
+
+Problem: Contact form says "Contact form is not configured yet."
+Solution:
+  - Check .env.local.
+  - Make sure VITE_FORMSPREE_ENDPOINT is valid.
+  - Restart npm run dev.
+
+Problem: WhatsApp button does not appear.
+Solution:
+  - Check VITE_WHATSAPP_NUMBER in .env.local.
+  - Number must be 8 to 15 digits and start with 1-9.
+  - Restart npm run dev.
+
+Problem: Image does not show.
+Solution:
+  - Check the image path in projects.js or brands.js.
+  - Make sure the file is inside the public folder.
+  - Paths must start with /images/...
+  - The website will show a placeholder if the image is missing.
+
+Problem: Portfolio filter shows no projects.
+Solution:
+  - Check the category value in projects.js.
+  - It must exactly match one of the categories in the categories array.
+
+Problem: Page does not scroll to a section.
+Solution:
+  - Make sure the section has an id, such as id="contact".
+  - The navbar link should use /#contact.
+
+------------------------------------------------------------
+13. BEFORE PUBLISHING CHECKLIST
+------------------------------------------------------------
+
+[ ] Add at least 3 real projects
+[ ] Add real project images
+[ ] Replace placeholder client names
+[ ] Add real brand logos with permission
+[ ] Configure Formspree endpoint
+[ ] Configure WhatsApp number
+[ ] Test contact form
+[ ] Test all portfolio pages
+[ ] Test mobile layout
+[ ] Run npm run build with no errors
+[ ] Check browser title and favicon
+
+------------------------------------------------------------
+END OF MANUAL
+------------------------------------------------------------
