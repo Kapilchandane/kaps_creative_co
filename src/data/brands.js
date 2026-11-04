@@ -3,7 +3,7 @@ export const brands = [
     id: 1,
     name: "New Mahalaxmi Agency",
     slug: "new-mahalaxmi-agency",
-    logo: "/images/brands/mahalaxmi.webp",
+    logo: null,
     services: [
       "Website Management",
       "Social Media Design",
@@ -58,7 +58,7 @@ export const brands = [
     id: 5,
     name: "PAPAx",
     slug: "papax",
-    logo: "/images/brands/papax.webp",
+    logo: null,
     services: [
       "Product Design",
     ],

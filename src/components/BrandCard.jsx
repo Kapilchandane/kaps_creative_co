@@ -1,11 +1,32 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import { asset } from "../utils/asset";
 
 export default function BrandCard({ brand }) {
   const [imageError, setImageError] = useState(false);
+
+  const x = useMotionValue(0.5);
+  const y = useMotionValue(0.5);
+  const rotateX = useSpring(useTransform(y, [0, 1], [6, -6]), {
+    stiffness: 220,
+    damping: 20,
+  });
+  const rotateY = useSpring(useTransform(x, [0, 1], [-6, 6]), {
+    stiffness: 220,
+    damping: 20,
+  });
+
+  const handleMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    x.set((e.clientX - rect.left) / rect.width);
+    y.set((e.clientY - rect.top) / rect.height);
+  };
+  const handleLeave = () => {
+    x.set(0.5);
+    y.set(0.5);
+  };
 
   return (
     <motion.article
@@ -13,7 +34,10 @@ export default function BrandCard({ brand }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="group relative overflow-hidden rounded-3xl border border-zinc-200/60 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] p-7 backdrop-blur-xl shadow-sm dark:shadow-none transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/60 hover:shadow-[0_20px_50px_-15px_rgba(139,92,246,0.4)]"
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
+      style={{ rotateX, rotateY, transformPerspective: 900, transformStyle: "preserve-3d" }}
+      className="group relative overflow-hidden rounded-3xl border border-zinc-200/60 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] p-7 backdrop-blur-xl shadow-sm dark:shadow-none transition-all duration-300 hover:border-violet-500/60 hover:shadow-[0_20px_50px_-15px_rgba(139,92,246,0.4)]"
     >
       <div className="mb-7 flex h-36 items-center justify-center rounded-2xl bg-slate-100 dark:bg-white/5 p-6">
         {brand.logo && !imageError ? (

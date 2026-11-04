@@ -1,9 +1,30 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import ProjectImage from "./ProjectImage";
 
 export default function ProjectCard({ project }) {
+  const x = useMotionValue(0.5);
+  const y = useMotionValue(0.5);
+  const rotateX = useSpring(useTransform(y, [0, 1], [7, -7]), {
+    stiffness: 220,
+    damping: 20,
+  });
+  const rotateY = useSpring(useTransform(x, [0, 1], [-7, 7]), {
+    stiffness: 220,
+    damping: 20,
+  });
+
+  const handleMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    x.set((e.clientX - rect.left) / rect.width);
+    y.set((e.clientY - rect.top) / rect.height);
+  };
+  const handleLeave = () => {
+    x.set(0.5);
+    y.set(0.5);
+  };
+
   return (
     <motion.article
       layout
@@ -11,7 +32,10 @@ export default function ProjectCard({ project }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.45 }}
-      className="group relative overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-[#15151d] transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/60 hover:shadow-[0_18px_45px_-12px_rgba(139,92,246,0.45)]"
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
+      style={{ rotateX, rotateY, transformPerspective: 900, transformStyle: "preserve-3d" }}
+      className="group relative overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-[#15151d] transition-all duration-300 hover:border-violet-500/60 hover:shadow-[0_18px_45px_-12px_rgba(139,92,246,0.45)]"
     >
       <Link to={`/portfolio/${project.slug}`} className="block">
         <div className="relative overflow-hidden">

@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
+import Magnetic from "../components/Magnetic.jsx";
 
 export default function Hero() {
   return (
@@ -44,22 +45,26 @@ export default function Hero() {
         </p>
 
         <div className="mt-10 flex flex-wrap gap-4">
-          <a
-            href="#work"
-            className="group inline-flex items-center gap-2 rounded-full bg-violet-500 px-8 py-4 font-semibold shadow-[0_10px_40px_-10px_rgba(139,92,246,0.6)] transition hover:bg-violet-400 hover:shadow-[0_10px_50px_-5px_rgba(139,92,246,0.8)]"
-          >
-            Explore Our Work
-            <ArrowUpRight
-              size={19}
-              className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            />
-          </a>
-          <a
-            href="#services"
-            className="glass inline-flex items-center gap-2 rounded-full px-8 py-4 font-semibold transition hover:border-violet-400"
-          >
-            Our Services <ArrowRight size={19} />
-          </a>
+          <Magnetic>
+            <a
+              href="#work"
+              className="group inline-flex items-center gap-2 rounded-full bg-violet-500 px-8 py-4 font-semibold shadow-[0_10px_40px_-10px_rgba(139,92,246,0.6)] transition hover:bg-violet-400 hover:shadow-[0_10px_50px_-5px_rgba(139,92,246,0.8)]"
+            >
+              Explore Our Work
+              <ArrowUpRight
+                size={19}
+                className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </a>
+          </Magnetic>
+          <Magnetic>
+            <a
+              href="#services"
+              className="glass inline-flex items-center gap-2 rounded-full px-8 py-4 font-semibold transition hover:border-violet-400"
+            >
+              Our Services <ArrowRight size={19} />
+            </a>
+          </Magnetic>
         </div>
 
         <div className="mt-20 flex flex-wrap gap-8 border-t border-zinc-200/60 dark:border-white/10 pt-8 text-sm text-slate-600 dark:text-zinc-400">

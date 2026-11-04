@@ -17,7 +17,7 @@ export const projects = [
       "Product Mockups",
     ],
     thumbnail:
-      "/images/projects/anti-acne-cream/cover.webp",
+      "/images/projects/designed-labels/lavanymrut-anti-acne-cream.webp",
     images: [
       "/images/projects/anti-acne-cream/front.webp",
       "/images/projects/anti-acne-cream/back.webp",
@@ -66,7 +66,7 @@ export const projects = [
       "E-commerce",
     ],
     thumbnail:
-      "/images/projects/ecommerce-website/cover.webp",
+      "/images/projects/social-media-campaign/mockup-poster.webp",
     images: [
       "/images/projects/ecommerce-website/desktop.webp",
       "/images/projects/ecommerce-website/mobile.webp",

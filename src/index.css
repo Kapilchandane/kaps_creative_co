@@ -75,3 +75,16 @@ html.dark .glass {
     animation: none;
   }
 }
+
+@media (pointer: fine) {
+  html,
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  label {
+    cursor: none;
+  }
+}

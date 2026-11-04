@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ArrowUpRight, Sun, Moon } from "lucide-react";
+import Magnetic from "./Magnetic";
 
 const links = [
   { name: "Home", to: "/" },
@@ -65,12 +66,14 @@ export default function Navbar() {
           {dark ? <Sun size={18} /> : <Moon size={18} />}
         </button>
 
-        <Link
-          to="/#contact"
-          className="hidden items-center gap-2 rounded-full bg-violet-500 px-4 sm:px-6 py-3 text-sm font-semibold transition hover:bg-violet-400 lg:inline-flex"
-        >
-          Get a Quote <ArrowUpRight size={17} />
-        </Link>
+        <Magnetic className="hidden lg:inline-flex">
+          <Link
+            to="/#contact"
+            className="inline-flex items-center gap-2 rounded-full bg-violet-500 px-4 sm:px-6 py-3 text-sm font-semibold transition hover:bg-violet-400"
+          >
+            Get a Quote <ArrowUpRight size={17} />
+          </Link>
+        </Magnetic>
 
         <button
           type="button"
